@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import {
+  Image,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import meditation1 from "./assets/meditationSplash.svg";
+import googleIcon from "./assets/google-icon.png";
+import discordIcon from "./assets/discord-icon.png";
+import githubIcon from "./assets/github-icon.png";
+import SocialButtonAuth from "./components/SocialButtonAuth";
+import CredentialsInput from "./components/CredentialsInput";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import ConfirmButton from "./components/ConfirmButton";
+import SignIn from "./pages/SignIn";
+import { NavigationContainer } from "@react-navigation/native";
+import LogIn from "./pages/LogIn";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Sign In" component={SignIn} />
+        <Stack.Screen name="LogIn" component={LogIn} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
