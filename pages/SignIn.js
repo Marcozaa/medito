@@ -30,7 +30,7 @@ export default function SignIn({ navigation }) {
         <View style={styles.container}>
           <Image
             style={styles.tinyLogo}
-            source={require("../assets/meditationSplash.png")}
+            source={require("../assets/images/meditationSplash.png")}
           />
           <View style={styles.signUpContainer}>
             <Text style={styles.signUpText}>
