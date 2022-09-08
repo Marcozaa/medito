@@ -8,6 +8,8 @@ import {
   TextInput,
   View,
 } from "react-native";
+import client from "../api/client";
+import { Formik } from "formik";
 import meditation1 from "../assets/meditationSplash.svg";
 import googleIcon from "../assets/google-icon.png";
 import discordIcon from "../assets/discord-icon.png";
@@ -16,8 +18,21 @@ import SocialButtonAuth from "../components/SocialButtonAuth";
 import CredentialsInput from "../components/general/CredentialsInput";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ConfirmButton from "../components/general/ConfirmButton";
-
+import { signUpValidationSchema } from "./schemas/CredentialsValidationSchema";
 export default function SignIn({ navigation }) {
+  const signUp = async (values, formikActions) => {
+    console.log(values);
+    // Post request to the API
+    const res = await client.post("/users", {
+      ...values, // (username,password,email)
+    });
+
+    console.log(res);
+    console.log(res.data);
+    formikActions.resetForm();
+    formikActions.setSubmitting(false);
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <KeyboardAvoidingView
@@ -32,57 +47,90 @@ export default function SignIn({ navigation }) {
             style={styles.tinyLogo}
             source={require("../assets/images/meditationSplash.png")}
           />
-          <View style={styles.signUpContainer}>
-            <Text style={styles.signUpText}>
-              Sign up to{" "}
-              <Text style={{ fontWeight: "900", color: "#FAE1DC" }}>
-                Medito
-              </Text>
-            </Text>
-            <View style={styles.signUpInputs}>
-              <CredentialsInput
-                children={
-                  <Ionicons name="at-outline" size={25} color={"grey"} />
-                }
-                type={"Email"}
-              />
-              <CredentialsInput
-                children={
-                  <Ionicons name="person-outline" size={25} color={"grey"} />
-                }
-                type={"Full name"}
-              />
-              <CredentialsInput
-                children={
-                  <Ionicons
-                    name="lock-closed-outline"
-                    size={25}
-                    color={"grey"}
+          <Formik
+            validationSchema={signUpValidationSchema}
+            initialValues={{ email: "", name: "", password: "" }}
+            onSubmit={signUp}
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              isSubmitting,
+            }) => (
+              <View style={styles.signUpContainer}>
+                <Text style={styles.signUpText}>
+                  Sign up to{" "}
+                  <Text style={{ fontWeight: "900", color: "#FAE1DC" }}>
+                    Medito
+                  </Text>
+                </Text>
+                <View style={styles.signUpInputs}>
+                  <CredentialsInput
+                    onBlur={handleBlur("email")}
+                    handleChange={handleChange("email")}
+                    value={values.email}
+                    children={
+                      <Ionicons name="at-outline" size={25} color={"grey"} />
+                    }
+                    type={"Email"}
                   />
-                }
-                type={"Password"}
-              />
-            </View>
-            <Text style={styles.disclaimer}>
-              by signing up you agree to our{" "}
-              <Text
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                terms of service
-              </Text>{" "}
-              and our{" "}
-              <Text
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                privacy policy
-              </Text>
-            </Text>
-            <ConfirmButton text={"Continue"} />
-          </View>
+                  {errors.email && (
+                    <Text style={{ fontSize: 10, color: "red" }}>
+                      {errors.email}
+                    </Text>
+                  )}
+                  <CredentialsInput
+                    onBlur={handleBlur("name")}
+                    handleChange={handleChange("name")}
+                    value={values.name}
+                    children={
+                      <Ionicons
+                        name="person-outline"
+                        size={25}
+                        color={"grey"}
+                      />
+                    }
+                    type={"Full name"}
+                  />
+                  <CredentialsInput
+                    onBlur={handleBlur("password")}
+                    handleChange={handleChange("password")}
+                    value={values.password}
+                    children={
+                      <Ionicons
+                        name="lock-closed-outline"
+                        size={25}
+                        color={"grey"}
+                      />
+                    }
+                    type={"Password"}
+                  />
+                </View>
+                <Text style={styles.disclaimer}>
+                  by signing up you agree to our{" "}
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    terms of service
+                  </Text>{" "}
+                  and our{" "}
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    privacy policy
+                  </Text>
+                </Text>
+                <ConfirmButton handleSubmit={handleSubmit} text={"Continue"} />
+              </View>
+            )}
+          </Formik>
 
           <View style={styles.logIn}>
             <Text style={{ color: "grey" }}>
