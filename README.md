@@ -1,7 +1,13 @@
 # About the app
 _*Medito*_ is a mobile app which aims to teach how to manage feelings and thoughts with the lifelong skill of everyday mindfulness, any time of the day.
 
-<!-- CONTRIBUTING -->
+<!-- User authentication -->
+## Current page design
+<img src="/assets/pageImages/mockup.png" />
+
+
+
+<!-- User authentication -->
 ## How auth works
 <img src="/images/auth.png" />
 
