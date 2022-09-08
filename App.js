@@ -13,9 +13,9 @@ import googleIcon from "./assets/google-icon.png";
 import discordIcon from "./assets/discord-icon.png";
 import githubIcon from "./assets/github-icon.png";
 import SocialButtonAuth from "./components/SocialButtonAuth";
-import CredentialsInput from "./components/CredentialsInput";
+import CredentialsInput from "./components/general/CredentialsInput";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import ConfirmButton from "./components/ConfirmButton";
+import ConfirmButton from "./components/general/ConfirmButton";
 import SignIn from "./pages/SignIn";
 import { NavigationContainer } from "@react-navigation/native";
 import LogIn from "./pages/LogIn";
@@ -29,6 +29,11 @@ export default function App() {
         <Stack.Screen name="Sign In" component={SignIn} />
         <Stack.Screen name="LogIn" component={LogIn} />
       </Stack.Navigator>
+      {/* only this in app: 
+  <AuthProvider>
+      <Router />
+    </AuthProvider>
+  */}
     </NavigationContainer>
   );
 }

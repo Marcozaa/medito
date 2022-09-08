@@ -13,9 +13,9 @@ import googleIcon from "../assets/google-icon.png";
 import discordIcon from "../assets/discord-icon.png";
 import githubIcon from "../assets/github-icon.png";
 import SocialButtonAuth from "../components/SocialButtonAuth";
-import CredentialsInput from "../components/CredentialsInput";
+import CredentialsInput from "../components/general/CredentialsInput";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import ConfirmButton from "../components/ConfirmButton";
+import ConfirmButton from "../components/general/ConfirmButton";
 
 export default function SignIn({ navigation }) {
   return (
