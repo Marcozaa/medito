@@ -14,8 +14,34 @@ import CredentialsInput from "../components/general/CredentialsInput.js";
 import ConfirmButton from "../components/general/ConfirmButton.js";
 import client from "../api/client";
 import { Formik } from "formik";
+import Toast from "react-native-root-toast";
+
 import { signUpValidationSchema } from "./schemas/CredentialsValidationSchema.js";
 export default function LogIn({ navigation }) {
+  function addToast(message) {
+    // Add a Toast on screen.
+    let toast = Toast.show(message, {
+      duration: Toast.durations.LONG,
+      position: Toast.positions.CENTER,
+      shadow: true,
+      animation: true,
+      hideOnPress: true,
+      delay: 0,
+      onShow: () => {
+        // calls on toast\`s appear animation start
+      },
+      onShown: () => {
+        // calls on toast\`s appear animation end.
+      },
+      onHide: () => {
+        // calls on toast\`s hide animation start.
+      },
+      onHidden: () => {
+        // calls on toast\`s hide animation end.
+      },
+    });
+  }
+
   const logIn = async (values, formikActions) => {
     console.log(values);
     // Post request to the API
@@ -23,8 +49,7 @@ export default function LogIn({ navigation }) {
       ...values, // (username,password)
     });
 
-    console.log(res);
-    console.log(res.data);
+    addToast(res.data);
     formikActions.resetForm();
     formikActions.setSubmitting(false);
   };
@@ -73,7 +98,7 @@ export default function LogIn({ navigation }) {
             <Formik
               validationSchema={signUpValidationSchema}
               initialValues={{ email: "", password: "" }}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={logIn}
             >
               {({
                 handleChange,

@@ -20,20 +20,23 @@ import SignIn from "./pages/SignIn";
 import { NavigationContainer } from "@react-navigation/native";
 import LogIn from "./pages/LogIn";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="LogIn" component={LogIn} />
-      </Stack.Navigator>
-      {/* only this in app: 
+    <RootSiblingParent>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="LogIn" component={LogIn} />
+        </Stack.Navigator>
+        {/* only this in app: 
   <AuthProvider>
       <Router />
     </AuthProvider>
   */}
-    </NavigationContainer>
+      </NavigationContainer>
+    </RootSiblingParent>
   );
 }

@@ -19,7 +19,33 @@ import CredentialsInput from "../components/general/CredentialsInput";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ConfirmButton from "../components/general/ConfirmButton";
 import { signUpValidationSchema } from "./schemas/CredentialsValidationSchema";
+import Toast from "react-native-root-toast";
+
 export default function SignIn({ navigation }) {
+  function addToast(message) {
+    // Add a Toast on screen.
+    let toast = Toast.show(message, {
+      duration: Toast.durations.LONG,
+      position: Toast.positions.CENTER,
+      shadow: true,
+      animation: true,
+      hideOnPress: true,
+      delay: 0,
+      onShow: () => {
+        // calls on toast\`s appear animation start
+      },
+      onShown: () => {
+        // calls on toast\`s appear animation end.
+      },
+      onHide: () => {
+        // calls on toast\`s hide animation start.
+      },
+      onHidden: () => {
+        // calls on toast\`s hide animation end.
+      },
+    });
+  }
+
   const signUp = async (values, formikActions) => {
     console.log(values);
     // Post request to the API
@@ -27,8 +53,7 @@ export default function SignIn({ navigation }) {
       ...values, // (username,password,email)
     });
 
-    console.log(res);
-    console.log(res.data);
+    addToast(res.data);
     formikActions.resetForm();
     formikActions.setSubmitting(false);
   };
