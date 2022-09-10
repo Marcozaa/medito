@@ -15,9 +15,19 @@ import ConfirmButton from "../components/general/ConfirmButton.js";
 import client from "../api/client";
 import { Formik } from "formik";
 import Toast from "react-native-root-toast";
-
+import * as SecureStore from "expo-secure-store";
 import { signUpValidationSchema } from "./schemas/CredentialsValidationSchema.js";
+import { SvgUri } from "react-native-svg";
+import useAuthStore from "../store/store.js";
 export default function LogIn({ navigation }) {
+  // Access zustand global state
+  const setAuthorization = useAuthStore((state) => state.setIsAuthorized);
+
+  // Save jwt on local storage
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+  }
+
   function addToast(message) {
     // Add a Toast on screen.
     let toast = Toast.show(message, {
@@ -49,7 +59,12 @@ export default function LogIn({ navigation }) {
       ...values, // (username,password)
     });
 
-    addToast(res.data);
+    console.log(res);
+    addToast(res.data.message);
+    if (res.data.message == "Success") {
+      setAuthorization();
+    }
+    save("jwttoken", res.data.token);
     formikActions.resetForm();
     formikActions.setSubmitting(false);
   };
@@ -67,7 +82,7 @@ export default function LogIn({ navigation }) {
 
             <Image
               style={styles.tinyLogo}
-              source={require("../assets/images/meditationBnW.png")}
+              source={require("../assets/images/warmup-for-running-illustration.png")}
             />
           </Animated.View>
 

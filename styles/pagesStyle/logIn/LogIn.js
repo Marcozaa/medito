@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "50%",
+    height: "54%",
+    paddingBottom: 100,
     width: "100%",
   },
   bottomView: {
