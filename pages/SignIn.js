@@ -89,7 +89,7 @@ export default function SignIn({ navigation }) {
                 <Text style={styles.signUpText}>
                   Sign up to{" "}
                   <Text style={{ fontWeight: "900", color: "#FAE1DC" }}>
-                    Medito
+                    Routined
                   </Text>
                 </Text>
                 <View style={styles.signUpInputs}>

@@ -19,6 +19,7 @@ import * as SecureStore from "expo-secure-store";
 import { signUpValidationSchema } from "./schemas/CredentialsValidationSchema.js";
 import { SvgUri } from "react-native-svg";
 import useAuthStore from "../store/store.js";
+import useUserStore from "../store/userStore.js";
 export default function LogIn({ navigation }) {
   // Access zustand global state
   const setAuthorization = useAuthStore((state) => state.setIsAuthorized);
@@ -53,17 +54,19 @@ export default function LogIn({ navigation }) {
   }
 
   const logIn = async (values, formikActions) => {
-    console.log(values);
     // Post request to the API
     const res = await client.post("/users/login", {
-      ...values, // (username,password)
+      ...values, // (email,password)
     });
 
-    console.log(res);
     addToast(res.data.message);
+    // If the user is succesfully logged
     if (res.data.message == "Success") {
+      save("email", values.email);
+
       setAuthorization();
     }
+    save("username", res.data.username);
     save("jwttoken", res.data.token);
     formikActions.resetForm();
     formikActions.setSubmitting(false);

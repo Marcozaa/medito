@@ -1,14 +1,17 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
+  quote: {
     display: "flex",
-    justifyContent: "start",
+    flexDirection: "row",
     alignItems: "center",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#fff",
+    width: "80%",
   },
+  quotationMarks: {
+    fontWeight: "700",
+    fontSize: 30,
+  },
+  welcomeQuote: { color: "#fff" },
 });
 
 export default styles;

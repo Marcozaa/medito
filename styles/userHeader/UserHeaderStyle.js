@@ -3,16 +3,23 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     width: "90%",
-    height: 150,
-    borderRadius: "20%",
-    backgroundColor: "#000",
-    overflow: "hidden",
+    height: 200,
     marginTop: 100,
-    shadowColor: "#52006A",
-    elevation: 20,
-    display: "flex",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     padding: 20,
+    backgroundColor: "#000",
+    borderRadius: 20,
+
+    shadowColor: "#171717",
+    shadowOpacity: 0.6,
+    shadowRadius: 20,
+  },
+  left: {
+    display: "flex",
+    justifyContent: "space-between",
+    height: "75%",
   },
   blob: {
     position: "absolute",
@@ -23,17 +30,23 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   welcomeText: {
-    fontSize: 35,
     color: "white",
+
+    fontSize: 30,
     fontWeight: "800",
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
   },
   paragraphText: {
     fontSize: 20,
     color: "#bebebe",
     fontWeight: "400",
+  },
+  welcomeSubHeader: {
+    marginVertical: 20,
+    fontSize: 30,
+    fontWeight: "400",
+  },
+  welcomeQuote: {
+    fontSize: 20,
   },
 });
 

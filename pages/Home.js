@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
+import TodaysTasks from "../components/homepage/TodaysTasks";
 import UserHeader from "../components/homepage/UserHeader";
-import styles from "../styles/pagesStyle/Home";
+import styles from "../styles/pagesStyle/home/HomeStyle";
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <UserHeader />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <UserHeader />
+        {/** CALENDAR VIEW - DAYS */}
+        {/** GRAPH */}
+        <TodaysTasks />
+      </View>
+    </ScrollView>
   );
 }
