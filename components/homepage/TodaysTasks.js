@@ -9,7 +9,7 @@ import useTaskStore from "../../store/taskStore";
 import ProgressBar from "../taskProgress/ProgressBar";
 import * as Progress from "react-native-progress";
 
-export default function TodaysTasks() {
+export default function TodaysTasks({ day }) {
   const [tasks, setTasks] = useState([]);
   const { setState } = useTaskStore;
 
@@ -19,8 +19,10 @@ export default function TodaysTasks() {
     // get tasks from API
     const res = await client.post("/tasks", {
       email: email,
+      day: day,
     });
 
+    console.log(res);
     setTasks(res.data);
     console.log(tasks.length);
     setState({ totalTasks: tasks.length });
@@ -28,24 +30,32 @@ export default function TodaysTasks() {
 
   useEffect(() => {
     getTasks();
-  }, []);
+  }, [day]);
 
   return (
     <View style={styles.tasksWrapper}>
-      <ProgressBar totalTasks={tasks.length} />
-      <Text style={styles.header}>Today's tasks</Text>
-      <View style={styles.tasksContainer}>
-        {tasks?.map((task) => (
-          <Task
-            taskName={task.name}
-            key={task.id}
-            taskType={task.type}
-            time={task.duration}
-            completed={task.completed}
-            id={task.id}
-          />
-        ))}
-      </View>
+      {tasks?.length === 0 ? (
+        <Text style={styles.noTask}>
+          You haven't got scheduled task for today.🤔
+        </Text>
+      ) : (
+        <>
+          <ProgressBar totalTasks={tasks.length} />
+          <Text style={styles.header}>Today's tasks</Text>
+          <View style={styles.tasksContainer}>
+            {tasks?.map((task) => (
+              <Task
+                taskName={task.name}
+                key={task.id}
+                taskType={task.type}
+                time={task.duration}
+                completed={task.completed}
+                id={task.id}
+              />
+            ))}
+          </View>
+        </>
+      )}
     </View>
   );
 }

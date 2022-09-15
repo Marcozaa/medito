@@ -48,6 +48,16 @@ const styles = StyleSheet.create({
   welcomeQuote: {
     fontSize: 20,
   },
+  curvedWrapper: {
+    backgroundColor: "#FAE1DC",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 350,
+    borderBottomRightRadius: 200,
+    borderBottomLeftRadius: 200,
+  },
 });
 
 export default styles;

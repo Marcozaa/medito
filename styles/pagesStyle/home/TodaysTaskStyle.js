@@ -18,6 +18,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 20,
     width: "100%",
+    flex: 1,
+    height: "100%",
+  },
+  noTask: {
+    width: "100%",
+    textAlign: "center",
+    fontWeight: "600",
+    fontSize: 25,
   },
 });
 
