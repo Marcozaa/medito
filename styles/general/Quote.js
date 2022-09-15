@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
   quotationMarks: {
     fontWeight: "700",
     fontSize: 30,
+    color: "#fff",
   },
-  welcomeQuote: { color: "#fff" },
+  welcomeQuote: { color: "#fff", fontStyle: "italic", fontSize: 12 },
 });
 
 export default styles;

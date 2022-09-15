@@ -31,6 +31,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const isSignedIn = useAuthStore((state) => state.authorized);
   const setAuthorization = useAuthStore((state) => state.setIsAuthorized);
+  const removeAuthorization = useAuthStore((state) => state.removeAuth);
 
   // delete value of jwt token in localstorage - testing purposes
   async function deleteToken(key) {
@@ -56,9 +57,12 @@ export default function App() {
       }
     );
 
+    console.log(res.data);
     // If the server accepted the token, the user is authorized
     if (res.data.message === "authorized") {
       setAuthorization(); // The global state is updated
+    } else {
+      removeAuthorization();
     }
   };
 

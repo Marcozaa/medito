@@ -1,15 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flex: 1,
-    justifyContent: "start",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#fff",
-  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -40,7 +31,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    borderColor: "black",
+    borderWidth: 1,
+    backgroundColor: "gray",
   },
   textStyle: {
     color: "white",
@@ -50,6 +43,19 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    fontSize: 20,
+    fontWeight: "600",
+  },
+  confirmButton: {
+    backgroundColor: "#8E5449",
+    fontSize: 40,
+    width: 180,
+    height: 60,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 40,
+    margin: 20,
   },
 });
 

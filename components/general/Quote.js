@@ -23,7 +23,7 @@ export default function Quote() {
   return (
     <View style={styles.quote}>
       <Text style={styles.quotationMarks}></Text>
-      {quote && <Text style={styles.welcomeQuote}>{quote}</Text>}
+      {quote && <Text style={styles.welcomeQuote}>"{quote}"</Text>}
     </View>
   );
 }

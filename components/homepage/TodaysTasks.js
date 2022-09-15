@@ -32,6 +32,10 @@ export default function TodaysTasks({ day }) {
     getTasks();
   }, [day]);
 
+  const results = tasks.filter((obj) => {
+    return obj.completed === 1;
+  });
+
   return (
     <View style={styles.tasksWrapper}>
       {tasks?.length === 0 ? (
@@ -40,7 +44,10 @@ export default function TodaysTasks({ day }) {
         </Text>
       ) : (
         <>
-          <ProgressBar totalTasks={tasks.length} />
+          <ProgressBar
+            totalTasks={tasks.length}
+            completedTasks={results.length}
+          />
           <Text style={styles.header}>Today's tasks</Text>
           <View style={styles.tasksContainer}>
             {tasks?.map((task) => (

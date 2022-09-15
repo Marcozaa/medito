@@ -14,6 +14,7 @@ export default function CredentialsInput({
   value,
   handleChange,
   handleBlur,
+  placeholderColor,
 }) {
   const [text, onChangeText] = useState("");
   return (
@@ -26,6 +27,7 @@ export default function CredentialsInput({
         style={styles.textInput}
         onChange={onChangeText}
         placeholder={type}
+        placeholderTextColor={placeholderColor && placeholderColor}
         keyboardType={type === "Email" ? "email-address" : "default"}
         secureTextEntry={type === "Password" ? true : false}
       />

@@ -31,9 +31,9 @@ export default function Task({
   }
 
   useEffect(() => {
-    if (completedTask == 1) {
+    /*if (completedTask == 1) {
       completeTask();
-    }
+    }*/
   }, []);
 
   return (
