@@ -26,6 +26,7 @@ import * as SecureStore from "expo-secure-store";
 import client from "./api/client";
 import Home from "./pages/Home";
 import useAuthStore from "./store/store";
+import Analytics from "./pages/Analytics.js";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
           <>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Analytics" component={Analytics} />
             </Stack.Navigator>
           </>
         ) : (

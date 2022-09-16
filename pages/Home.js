@@ -7,7 +7,7 @@ import TodaysTasks from "../components/homepage/TodaysTasks";
 import UserHeader from "../components/homepage/UserHeader";
 import styles from "../styles/pagesStyle/home/HomeStyle";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [day, setDay] = useState();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -25,6 +25,7 @@ export default function Home() {
         </View>
       </ScrollView>
       <BottomBar
+        navigation={navigation}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
